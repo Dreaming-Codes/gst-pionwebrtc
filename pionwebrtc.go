@@ -1,6 +1,20 @@
 package main
 
-import "github.com/tinyzimmer/go-glib/glib"
+import (
+	"github.com/pion/webrtc/v3"
+	"github.com/tinyzimmer/go-glib/glib"
+	"github.com/tinyzimmer/go-gst/gst"
+)
+
+var (
+	peerConnectionConfig = webrtc.Configuration{}
+)
+
+var CAT = gst.NewDebugCategory(
+	"pionwebrtc",
+	gst.DebugColorNone,
+	"PionWebRTC Element",
+)
 
 func main() {}
 
