@@ -32,12 +32,14 @@ func (g *gobin) ClassInit(klass *glib.ObjectClass) {
 		"WebRTC Video and Audio Transmitter",
 		"Lorenzo Rizzotti <dev@reaming.codes>",
 	)
-	class.AddPadTemplate(gst.NewPadTemplate(
-		"src",
-		gst.PadDirectionSource,
-		gst.PadPresenceSometimes,
-		gst.NewAnyCaps(),
-	))
+	/*
+		class.AddPadTemplate(gst.NewPadTemplate(
+			"src",
+			gst.PadDirectionSource,
+			gst.PadPresenceSometimes,
+			gst.NewAnyCaps(),
+		))
+	*/
 	class.AddPadTemplate(gst.NewPadTemplate(
 		"sink",
 		gst.PadDirectionSink,

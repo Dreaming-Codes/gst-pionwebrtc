@@ -4,6 +4,7 @@ import (
 	"github.com/pion/webrtc/v3"
 	"github.com/tinyzimmer/go-glib/glib"
 	"github.com/tinyzimmer/go-gst/gst"
+	"github.com/tinyzimmer/go-gst/gst/base"
 )
 
 type MediaType int8
@@ -23,7 +24,7 @@ type senderSink struct {
 	state *state
 }
 
-func (f *senderSink) ClassInit(klass *glib.ObjectClass) {
+func (s *senderSink) ClassInit(klass *glib.ObjectClass) {
 	CAT.Log(gst.LevelLog, "Initializing new senderSink class")
 	class := gst.ToElementClass(klass)
 	class.SetMetadata(
@@ -42,9 +43,14 @@ func (f *senderSink) ClassInit(klass *glib.ObjectClass) {
 	class.InstallProperties(properties)
 }
 
-func (f *senderSink) New() glib.GoObjectSubclass {
+func (s *senderSink) New() glib.GoObjectSubclass {
 	CAT.Log(gst.LevelLog, "Initializing new senderSink object")
 	return &senderSink{
 		state: &state{},
 	}
+}
+
+func (s *senderSink) Render(self *base.GstBaseSink, buffer *gst.Buffer) gst.FlowReturn {
+	CAT.Log(gst.LevelLog, "Rendering buffer")
+	return gst.FlowOK
 }
